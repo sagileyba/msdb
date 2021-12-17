@@ -24,7 +24,7 @@ public class PersonController {
 	private PersonService personService;
 	@Autowired
 	private RestTemplate client;
-	private static String report_URL = "http://localhost:8081/report/";
+	private static String report_URL = "http://covid21analytics.herokuapp.com/report/";
 
 
 	@GetMapping("get/All")
