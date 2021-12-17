@@ -25,7 +25,7 @@ public class Task implements CommandLineRunner {
     HospitalRepository hospitalRepository;
     @Autowired
     HospitalService hospitalService;
-    private static String report_URL = "covid21analytics.herokuapp.com/report/";
+    private static String report_URL = "https://covid21analytics.herokuapp.com/report/";
 
     public Task() {
 
