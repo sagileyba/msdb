@@ -38,7 +38,7 @@ public class HospitalService {
     private RestTemplate client;
 	int cntHospital=0;
 	String dateToday="";
-	private static String report_URL = "http://localhost:8081/report/report/";
+	private static String report_URL = "https://covid21analytics.herokuapp.com/report/report/";
 	
     public void addHospital(Hospital hospital) throws Exception {
         Hospital existing = this.hospitalRepository.findById(hospital.getId());
