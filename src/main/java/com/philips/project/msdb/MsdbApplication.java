@@ -8,16 +8,18 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 
 import com.philips.project.msdb.services.HospitalService;
 
 @SpringBootApplication
+@EnableScheduling
 public class MsdbApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(MsdbApplication.class, args);
-		HospitalService hospitalService = context.getBean(HospitalService.class);
+		/*HospitalService hospitalService = context.getBean(HospitalService.class);
 		Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -31,7 +33,7 @@ public class MsdbApplication {
 				}
             }
 		 }, "Thread 1");
-        thread1.start();
+        thread1.start();*/
 	}
 
 	@Bean

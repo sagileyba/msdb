@@ -16,6 +16,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -64,8 +65,8 @@ public class HospitalService {
 	public Iterable<Hospital> getAllHospitals() {
 		return this.hospitalRepository.findAll();
 	}
-
-
+    // https://stackoverflow.com/questions/26147044/spring-cron-expression-for-every-day-101am
+    @Scheduled(cron = "0 0 0/1 1/1 * ?")         // this code will be executed every hour
 	public synchronized int sendWarningReports() {	
 		int [] NumOfBeds = new int[3];  // NumOfBeds in North , South , Center
 		int [] postiveRes = new int [3];  // postiveRes in North , South , Center
@@ -78,7 +79,7 @@ public class HospitalService {
 			if(NumOfBeds[i] == 0)
 				NumOfBeds[i] = calcNumOfBeds(areaEnum.name());
 			// get postive person number in area in date 
-			System.out.println(dtf.format(now));
+			System.out.println("Hospital two weeks ago: " +dtf.format(now));
 			//postiveRes[i] = personRepo.getPostiveOfCorona(areaEnum.ordinal(),dtf.format(now),true);
 	        String url = report_URL + dtf.format(now);
 
