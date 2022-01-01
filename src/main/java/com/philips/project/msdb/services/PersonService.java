@@ -70,8 +70,8 @@ public class PersonService implements Validator {
 		if (!this.validateDateFormat(date)) {
 			return personsList;
 		}
-		String criterion = "{\"result_date\":" + "\"" + date + "\"" + "}";
-		String url = "https://data.gov.il/api/action/datastore_search?resource_id=dcf999c1-d394-4b57-a5e0-9d014a62e046&limit=20000";
+		String criterion = "{\"test_date\":" + "\"" + date + "\"" + "}";
+		String url = "https://data.gov.il/api/3/action/datastore_search?resource_id=74216e15-f740-4709-adb7-a6fb0955a048&limit=100000";
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url).queryParam("filters", criterion);
 
@@ -82,7 +82,7 @@ public class PersonService implements Validator {
 		for (Person person : persons) {
 			//Get random fields: (Dev operation)
 			this.randomizePersonData(person);
-			if (person.getTest_for_corona_diagnosis().equals("0")) {
+			if (person.getCorona_result().equals("חיובי")) {
 				person.setBool_of_corona(true);
 			} else
 				person.setBool_of_corona(false);

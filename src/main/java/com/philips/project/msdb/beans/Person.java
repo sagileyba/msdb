@@ -17,10 +17,10 @@ public class Person {
 	@Column(name="id")
 	private int _id;
 	@Column(name="date")
-	private String result_date;
+	private String test_date;
 	@Column(name="result")
 	private boolean bool_of_corona;
-	private String test_for_corona_diagnosis;
+	private String corona_result;
 	private String gender;
 	private int idCity; // E-relevant
 	private AreaEnum area;
