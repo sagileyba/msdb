@@ -75,7 +75,7 @@ public class Task implements CommandLineRunner {
         }
         List<Person> personListAPI = new ArrayList<>();
        
-        while(date.isBefore(LocalDate.now().plusDays(1)) ) {
+        while(date.isBefore(LocalDate.now().plusDays(7)) ) {
         	System.out.println(">>FETCH DATA FOR DATE: " + date);
             personListAPI = this.personService.fetchAPIData(date.toString());
             this.sendDailyParams(personListAPI, date.toString());
