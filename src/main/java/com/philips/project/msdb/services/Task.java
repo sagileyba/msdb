@@ -65,18 +65,22 @@ public class Task implements CommandLineRunner {
    
     // https://stackoverflow.com/questions/26147044/spring-cron-expression-for-every-day-101am
     @Scheduled(cron = "0 0 1 * * ?")         // this code will be executed every day at 1AM
-    public void resetCache() {
-    	LocalDate date = LocalDate.now();
+    public void dailyMohDBCheck() {
+    	LocalDate date = LocalDate.now().minusDays(10); //limit days tracking from moh database
         List<Person> existing = this.personRepository.findByResultDate(date.toString());
+       
+        while( existing.size() != 0 ) {
+        	date = date.plusDays(1);
+            existing = this.personRepository.findByResultDate(date.toString());
+        }
         List<Person> personListAPI = new ArrayList<>();
-        if (existing.size() == 0) {
-            System.out.println(">>FETCH DATA FOR DATE: " + date);
+       
+        while(date.isBefore(LocalDate.now().plusDays(1)) ) {
+        	System.out.println(">>FETCH DATA FOR DATE: " + date);
             personListAPI = this.personService.fetchAPIData(date.toString());
             this.sendDailyParams(personListAPI, date.toString());
-        } else {
-            this.sendDailyParams(existing, date.toString());
-            System.out.println(">>Date already exist in DB: " + date);
-        }        
+        	date = date.plusDays(1);
+        }
 
     }
     
