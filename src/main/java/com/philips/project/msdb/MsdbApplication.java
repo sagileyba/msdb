@@ -44,10 +44,10 @@ public class MsdbApplication {
 	@Bean
 	public JavaMailSender getJavaMailSender() {
 	    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-	    mailSender.setHost("smtp.gmail.com");
-	    mailSender.setPort(587);
-	    
-	    mailSender.setUsername("system.report.07@gmail.com");
+	    mailSender.setHost("smtp.gmail.com");  //SMTP (Simple Mail Transfer Protocol)
+	    mailSender.setPort(587); //Port 587, coupled with TLS encryption, ensures that email is submitted securely and following the guidelines set out by the IETF.
+	     
+	    mailSender.setUsername("system.report.07@gmail.com"); //gmail mail to send from (mahdi created)
 	    mailSender.setPassword("system077");
 	    
 	    Properties props = mailSender.getJavaMailProperties();
